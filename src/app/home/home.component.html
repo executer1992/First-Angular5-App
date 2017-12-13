@@ -1,0 +1,108 @@
+<div class="container color-dark">
+    <div class="col">
+      <p>Add a bucket list item</p>
+    </div>
+    <div class="col">
+      <p>Your bucket list ({{ mojeCiasta.length }})</p>
+    </div>
+  </div>
+  <div class="container color-light" [@cakeArray]="mojeCiasta.length">
+    <div class="col">
+      <p class="sm">Use this form below to add a new recipe. What do you want to add to your box?</p>
+  
+      <form>
+          <input type="text" class="txt" name="item" placeholder="Name your Cake.." [(ngModel)]="cakeText">
+          <br><span>{{ cakeText }}</span><br>
+        <input type="submit" class="btn" [value]="btnCakeText" (click)="openModal()">
+      </form>
+    </div>
+    <div class="col">
+      
+      <div class="life-container" *ngFor="let goal of mojeCiasta; let i=index" >
+        {{ mojeCiasta[i].name }}
+       
+        <button class="editRecipe" (click)="editRecipe(i)">Edit</button><button class="removeRecipe" (click)="removeRecipe(i)">Remove</button>
+        
+      </div>
+    </div>
+  </div>
+<!-- Modal for Recipe -->
+  <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close" (click) ="closeModal()" >&times;</span>
+            <h2>{{ cakeText }}</h2>
+          </div>
+          <div class="modal-body">
+              <div class="container color-dark">
+                  <div class="col">
+                    <p>Add a bucket list item</p>
+                  </div>
+                  <div class="col">
+                    <p>Your bucket list ({{ingridients.length }})</p>
+                  </div>
+                </div>
+              <div class="container color-light" [@ingridients]="ingridients.length">
+                  <div class="col">
+                                    
+                    <form>                  
+                        <p class="sm">Add your ingridients </p>
+                        <input type="text" class="txt" name="item" placeholder="Ingridients.." [(ngModel)]="ingridientsText">
+                        <br><span>{{ ingridientsText }}</span><br>
+                      <input type="submit" class="btn" [value]="btnIngridientText" (click)="addIngridient()">
+                    </form>
+                  </div>
+                  <div class="col">
+                    <p class="life-container" *ngFor="let goal of ingridients; let i=index" (click)="removeItem(i)">
+                      {{ goal }}
+                    </p>
+                  </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <h3>Description</h3>
+            <textarea  name="opis" [(ngModel)]="descriptionText"></textarea>
+            <input type="submit" class="btn" [value]="descriptionBtn" (click)="addObjectToArray()">
+          </div>
+        </div> 
+  </div>
+  <!-- Modal for Editing -->
+  <div id="myEditModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <h2>{{ cakeText }}</h2>
+      </div>
+      <div class="modal-body">
+          <div class="container color-dark">
+              <div class="col">
+                <p>Add a bucket list item</p>
+              </div>
+              <div class="col">
+                <p>Your bucket list ({{ingridients.length }})</p>
+              </div>
+            </div>
+          <div class="container color-light" [@ingridients]="ingridients.length">
+              <div class="col">
+                                
+                <form>                  
+                    <p class="sm">Add your ingridients </p>
+                    <input type="text" class="txt" name="item" placeholder="Ingridients.." [(ngModel)]="ingridientsText">
+                    <br><span>{{ ingridientsText }}</span><br>
+                  <input type="submit" class="btn" [value]="btnIngridientText" (click)="addIngridient()">
+                </form>
+              </div>
+              <div class="col">
+                <p class="life-container" *ngFor="let goal of ingridients; let i=index" (click)="removeItem(i)">
+                  {{ goal }}
+                </p>
+              </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <h3>Description</h3>
+        <textarea  name="opis" [(ngModel)]="descriptionText"></textarea>
+        <input type="submit" class="btn" [value]="descriptionBtn" (click)="addObjectToArray()">
+      </div>
+    </div> 
+</div>
